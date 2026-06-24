@@ -159,18 +159,7 @@ export default async function PublicTombolaPage({
                   className="border rounded-lg px-3 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-black"
                 />
               </div>
-              <div className="flex flex-col gap-1.5">
-                <label className="text-sm font-medium" htmlFor="email">Email *</label>
-                <input
-                  id="email"
-                  name="email"
-                  type="email"
-                  required
-                  placeholder="marie@exemple.fr"
-                  className="border rounded-lg px-3 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-black"
-                />
-              </div>
-              <div className="flex flex-col gap-1.5">
+<div className="flex flex-col gap-1.5">
                 <label className="text-sm font-medium" htmlFor="quantity">Nombre de billets</label>
                 <select
                   id="quantity"

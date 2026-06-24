@@ -157,7 +157,6 @@ export default async function AdminTombolaPage({
                   <tr className="text-left text-gray-500 border-b">
                     <th className="pb-2 font-medium">N°</th>
                     <th className="pb-2 font-medium">Nom</th>
-                    <th className="pb-2 font-medium">Email</th>
                   </tr>
                 </thead>
                 <tbody>
@@ -165,7 +164,6 @@ export default async function AdminTombolaPage({
                     <tr key={t.id} className="border-b last:border-0">
                       <td className="py-2 text-gray-400">#{t.number}</td>
                       <td className="py-2">{t.participant_name}</td>
-                      <td className="py-2 text-gray-500">{t.participant_email}</td>
                     </tr>
                   ))}
                 </tbody>
