@@ -3,13 +3,13 @@ import { createTombola } from "./actions";
 
 export default function NewTombolaPage() {
   return (
-    <main className="min-h-screen bg-gray-50 py-12 px-4">
+    <main className="min-h-screen py-12 px-4" style={{ backgroundColor: "#EEF2FF" }}>
       <div className="max-w-lg mx-auto">
         <div className="mb-8">
-          <Link href="/tombolas" className="text-sm text-gray-500 hover:text-gray-700">
+          <Link href="/tombolas" className="text-sm hover:opacity-70" style={{ color: "#3461FD" }}>
             ← Retour
           </Link>
-          <h1 className="text-2xl font-bold mt-2">Créer une tombola</h1>
+          <h1 className="text-2xl font-bold mt-2 text-gray-800">Créer une tombola</h1>
         </div>
 
         <form action={createTombola} className="bg-white rounded-xl border p-6 flex flex-col gap-5">
@@ -23,7 +23,8 @@ export default function NewTombolaPage() {
               type="text"
               required
               placeholder="Tombola de Noël 2026"
-              className="border rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-black"
+              className="border rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2"
+              style={{ outlineColor: "#3461FD" }}
             />
           </div>
 
@@ -36,7 +37,8 @@ export default function NewTombolaPage() {
               name="description"
               rows={3}
               placeholder="Décrivez votre tombola..."
-              className="border rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-black resize-none"
+              className="border rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 resize-none"
+              style={{ outlineColor: "#3461FD" }}
             />
           </div>
 
@@ -51,7 +53,8 @@ export default function NewTombolaPage() {
               min="0"
               step="0.50"
               placeholder="2.00"
-              className="border rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-black"
+              className="border rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2"
+              style={{ outlineColor: "#3461FD" }}
             />
           </div>
 
@@ -63,13 +66,15 @@ export default function NewTombolaPage() {
               id="draw_date"
               name="draw_date"
               type="datetime-local"
-              className="border rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-black"
+              className="border rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2"
+              style={{ outlineColor: "#3461FD" }}
             />
           </div>
 
           <button
             type="submit"
-            className="bg-black text-white rounded-lg px-4 py-2.5 text-sm font-medium hover:bg-gray-800 transition-colors"
+            className="text-white rounded-lg px-4 py-2.5 text-sm font-medium hover:opacity-90 transition-opacity"
+            style={{ backgroundColor: "#3461FD" }}
           >
             Créer la tombola
           </button>
