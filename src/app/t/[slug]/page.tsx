@@ -39,21 +39,21 @@ export default async function PublicTombolaPage({
   const registerWithSlug = registerParticipant.bind(null, slug);
 
   return (
-    <main className="min-h-screen bg-white">
+    <main className="min-h-screen" style={{ backgroundColor: "#EEF2FF" }}>
       {/* Header */}
-      <div className="bg-black text-white py-10 px-4">
+      <div className="py-10 px-4" style={{ backgroundColor: "#3461FD" }}>
         <div className="max-w-xl mx-auto text-center">
-          <h1 className="text-3xl font-bold">{tombola.title}</h1>
+          <h1 className="text-3xl font-bold text-white">{tombola.title}</h1>
           {tombola.description && (
-            <p className="mt-2 text-gray-300 text-sm">{tombola.description}</p>
+            <p className="mt-2 text-blue-200 text-sm">{tombola.description}</p>
           )}
           {tombola.ticket_price > 0 && (
-            <div className="mt-4 inline-block bg-white text-black text-sm font-semibold px-4 py-1.5 rounded-full">
+            <div className="mt-4 inline-block bg-white text-sm font-semibold px-4 py-1.5 rounded-full" style={{ color: "#3461FD" }}>
               {formatPrice(tombola.ticket_price)} / billet
             </div>
           )}
           {tombola.draw_date && (
-            <p className="mt-3 text-gray-400 text-xs">
+            <p className="mt-3 text-blue-300 text-xs">
               Tirage le{" "}
               {new Date(tombola.draw_date).toLocaleDateString("fr-FR", {
                 day: "numeric",
@@ -67,38 +67,38 @@ export default async function PublicTombolaPage({
         </div>
       </div>
 
-      <div className="max-w-xl mx-auto px-4 py-10 flex flex-col gap-10">
+      <div className="max-w-xl mx-auto px-4 py-10 flex flex-col gap-8">
 
         {/* Résultats */}
         {tombola.status === "drawn" && (
-          <div className="bg-yellow-50 border border-yellow-200 rounded-2xl p-6">
-            <h2 className="text-lg font-bold text-center mb-4">Résultats du tirage</h2>
+          <div className="bg-white border rounded-2xl p-6" style={{ borderColor: "#14B8A6" }}>
+            <h2 className="text-lg font-bold text-center mb-4" style={{ color: "#14B8A6" }}>Résultats du tirage</h2>
             {winners.length > 0 ? (
               <ul className="flex flex-col gap-3">
                 {winners.map((w) => (
                   <li key={w.id} className="flex items-center justify-between bg-white rounded-xl p-4 border">
                     <div>
-                      <div className="font-medium">{w.participant_name}</div>
-                      <div className="text-xs text-gray-500">Billet #{w.number}</div>
+                      <div className="font-medium text-gray-800">{w.participant_name}</div>
+                      <div className="text-xs text-gray-400">Billet #{w.number}</div>
                     </div>
-                    <div className="text-sm font-semibold text-yellow-700 bg-yellow-100 px-3 py-1 rounded-full">
+                    <div className="text-sm font-semibold px-3 py-1 rounded-full text-white" style={{ backgroundColor: "#14B8A6" }}>
                       {w.lot.name}
                     </div>
                   </li>
                 ))}
               </ul>
             ) : (
-              <p className="text-center text-gray-500 text-sm">Aucun gagnant.</p>
+              <p className="text-center text-gray-400 text-sm">Aucun gagnant.</p>
             )}
           </div>
         )}
 
         {/* Confirmation inscription */}
         {registered && ticketNumbers.length > 0 && (
-          <div className="bg-green-50 border border-green-200 rounded-2xl p-6 text-center">
+          <div className="bg-white rounded-2xl p-6 text-center border" style={{ borderColor: "#14B8A6" }}>
             <div className="text-3xl mb-2">🎟️</div>
-            <h2 className="font-bold text-lg">Inscription confirmée !</h2>
-            <p className="text-sm text-gray-600 mt-1">
+            <h2 className="font-bold text-lg" style={{ color: "#3461FD" }}>Inscription confirmée !</h2>
+            <p className="text-sm text-gray-500 mt-1">
               Bonjour {participantName}, vous avez {ticketNumbers.length} billet
               {ticketNumbers.length > 1 ? "s" : ""}.
             </p>
@@ -106,7 +106,8 @@ export default async function PublicTombolaPage({
               {ticketNumbers.map((n) => (
                 <span
                   key={n}
-                  className="bg-white border-2 border-green-300 text-green-800 font-mono font-bold px-3 py-1.5 rounded-lg text-sm"
+                  className="bg-white font-mono font-bold px-3 py-1.5 rounded-lg text-sm border-2"
+                  style={{ borderColor: "#14B8A6", color: "#14B8A6" }}
                 >
                   #{n}
                 </span>
@@ -118,10 +119,10 @@ export default async function PublicTombolaPage({
         {/* Lots */}
         {lots.length > 0 && (
           <div>
-            <h2 className="text-lg font-bold mb-4">Les lots à gagner</h2>
+            <h2 className="text-lg font-bold mb-4 text-gray-800">Les lots à gagner</h2>
             <div className="grid grid-cols-2 gap-3">
               {lots.map((lot, i) => (
-                <div key={lot.id} className="border rounded-xl overflow-hidden">
+                <div key={lot.id} className="bg-white border rounded-xl overflow-hidden">
                   {lot.photo_url ? (
                     <img
                       src={lot.photo_url}
@@ -129,13 +130,13 @@ export default async function PublicTombolaPage({
                       className="w-full h-32 object-cover"
                     />
                   ) : (
-                    <div className="w-full h-32 bg-gray-100 flex items-center justify-center text-3xl text-gray-300">
+                    <div className="w-full h-32 flex items-center justify-center text-3xl" style={{ backgroundColor: "#EEF2FF" }}>
                       🎁
                     </div>
                   )}
                   <div className="p-3">
-                    <div className="text-xs text-gray-400 mb-0.5">Lot {i + 1}</div>
-                    <div className="font-medium text-sm">{lot.name}</div>
+                    <div className="text-xs mb-0.5" style={{ color: "#14B8A6" }}>Lot {i + 1}</div>
+                    <div className="font-medium text-sm text-gray-800">{lot.name}</div>
                   </div>
                 </div>
               ))}
@@ -145,37 +146,27 @@ export default async function PublicTombolaPage({
 
         {/* Formulaire inscription */}
         {tombola.status === "open" && !registered && (
-          <div className="border rounded-2xl p-6">
-            <h2 className="text-lg font-bold mb-4">Prendre des billets</h2>
+          <div className="bg-white border rounded-2xl p-6">
+            <h2 className="text-lg font-bold mb-4 text-gray-800">Prendre des billets</h2>
             <form action={registerWithSlug} className="flex flex-col gap-4">
               <div className="flex flex-col gap-1.5">
-                <label className="text-sm font-medium" htmlFor="name">Prénom et nom *</label>
+                <label className="text-sm font-medium text-gray-700" htmlFor="name">Prénom et nom *</label>
                 <input
                   id="name"
                   name="name"
                   type="text"
                   required
                   placeholder="Marie Dupont"
-                  className="border rounded-lg px-3 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-black"
+                  className="border rounded-lg px-3 py-2.5 text-sm focus:outline-none focus:ring-2"
+                  style={{ outlineColor: "#3461FD" }}
                 />
               </div>
               <div className="flex flex-col gap-1.5">
-                <label className="text-sm font-medium" htmlFor="email">Email *</label>
-                <input
-                  id="email"
-                  name="email"
-                  type="email"
-                  required
-                  placeholder="marie@exemple.fr"
-                  className="border rounded-lg px-3 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-black"
-                />
-              </div>
-              <div className="flex flex-col gap-1.5">
-                <label className="text-sm font-medium" htmlFor="quantity">Nombre de billets</label>
+                <label className="text-sm font-medium text-gray-700" htmlFor="quantity">Nombre de billets</label>
                 <select
                   id="quantity"
                   name="quantity"
-                  className="border rounded-lg px-3 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-black bg-white"
+                  className="border rounded-lg px-3 py-2.5 text-sm focus:outline-none bg-white"
                 >
                   {Array.from({ length: 10 }, (_, i) => i + 1).map((n) => (
                     <option key={n} value={n}>
@@ -189,7 +180,8 @@ export default async function PublicTombolaPage({
               </div>
               <button
                 type="submit"
-                className="bg-black text-white rounded-xl py-3 font-medium hover:bg-gray-800 transition-colors"
+                className="text-white rounded-xl py-3 font-medium transition-opacity hover:opacity-90"
+                style={{ backgroundColor: "#3461FD" }}
               >
                 Confirmer mon inscription
               </button>
@@ -201,35 +193,27 @@ export default async function PublicTombolaPage({
         )}
 
         {tombola.status === "closed" && (
-          <div className="text-center py-8 text-gray-500">
-            <p className="text-lg font-medium">Les inscriptions sont clôturées.</p>
-            <p className="text-sm mt-1">Le tirage au sort aura lieu prochainement.</p>
+          <div className="bg-white rounded-2xl p-8 text-center border">
+            <p className="text-lg font-medium text-gray-700">Les inscriptions sont clôturées.</p>
+            <p className="text-sm mt-1 text-gray-400">Le tirage au sort aura lieu prochainement.</p>
           </div>
         )}
 
         {/* QR Code et partage */}
-        <div className="border rounded-2xl p-6 flex flex-col items-center gap-4">
-          <h2 className="text-sm font-semibold text-gray-600">Partager cette tombola</h2>
+        <div className="bg-white border rounded-2xl p-6 flex flex-col items-center gap-4">
+          <h2 className="text-sm font-semibold text-gray-500">Partager cette tombola</h2>
           <img src={qrDataUrl} alt="QR Code" className="w-40 h-40" />
-          <div className="w-full bg-gray-50 rounded-lg px-3 py-2 text-xs text-gray-500 text-center break-all font-mono">
+          <div className="w-full rounded-lg px-3 py-2 text-xs text-gray-400 text-center break-all font-mono" style={{ backgroundColor: "#EEF2FF" }}>
             {publicUrl}
           </div>
-          <div className="flex gap-2">
-            <a
-              href={`https://wa.me/?text=${encodeURIComponent(`Participez à notre tombola : ${publicUrl}`)}`}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-sm bg-green-500 text-white px-4 py-2 rounded-lg hover:bg-green-600"
-            >
-              WhatsApp
-            </a>
-            <a
-              href={`mailto:?subject=${encodeURIComponent(tombola.title)}&body=${encodeURIComponent(`Participez à notre tombola : ${publicUrl}`)}`}
-              className="text-sm border px-4 py-2 rounded-lg hover:bg-gray-50"
-            >
-              Email
-            </a>
-          </div>
+          <a
+            href={`https://wa.me/?text=${encodeURIComponent(`Participez à notre tombola : ${publicUrl}`)}`}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="text-sm bg-green-500 text-white px-4 py-2 rounded-lg hover:bg-green-600"
+          >
+            Partager sur WhatsApp
+          </a>
         </div>
 
       </div>

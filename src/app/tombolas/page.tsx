@@ -11,13 +11,14 @@ export default async function TombolasPage() {
   const tombolas = await getAllTombolas();
 
   return (
-    <main className="min-h-screen bg-gray-50 py-10 px-4">
+    <main className="min-h-screen py-10 px-4" style={{ backgroundColor: "#EEF2FF" }}>
       <div className="max-w-2xl mx-auto flex flex-col gap-6">
         <div className="flex items-center justify-between">
-          <h1 className="text-2xl font-bold">Tombolas</h1>
+          <h1 className="text-2xl font-bold text-gray-800">Tombolas</h1>
           <Link
             href="/tombolas/new"
-            className="bg-black text-white text-sm px-4 py-2 rounded-lg hover:bg-gray-800"
+            className="text-white text-sm px-4 py-2 rounded-lg hover:opacity-90"
+            style={{ backgroundColor: "#3461FD" }}
           >
             + Créer une tombola
           </Link>
@@ -30,32 +31,36 @@ export default async function TombolasPage() {
           </div>
         ) : (
           <ul className="flex flex-col gap-3">
-            {tombolas.map((t) => (
-              <li key={t.id}>
-                <a
-                  href={`/tombolas/${t.slug}`}
-                  className="block bg-white border rounded-xl p-5 hover:border-black transition-colors"
-                >
-                  <div className="flex items-center justify-between">
-                    <span className="font-medium">{t.title}</span>
-                    <span
-                      className={`text-xs font-medium px-2 py-1 rounded-full ${
-                        t.status === "open"
-                          ? "bg-green-100 text-green-800"
-                          : t.status === "drawn"
-                          ? "bg-gray-100 text-gray-600"
-                          : "bg-yellow-100 text-yellow-800"
-                      }`}
-                    >
-                      {t.status === "open" ? "Ouvert" : t.status === "drawn" ? "Tiré" : "Clôturé"}
-                    </span>
-                  </div>
-                  {t.ticket_price > 0 && (
-                    <p className="text-sm text-gray-500 mt-1">{formatPrice(t.ticket_price)} / billet</p>
-                  )}
-                </a>
-              </li>
-            ))}
+            {tombolas.map((t) => {
+              const statusStyle: Record<string, { bg: string; color: string }> = {
+                open: { bg: "#DCFCE7", color: "#16A34A" },
+                closed: { bg: "#FEF9C3", color: "#CA8A04" },
+                drawn: { bg: "#EEF2FF", color: "#3461FD" },
+              };
+              const s = statusStyle[t.status] ?? { bg: "#f3f4f6", color: "#6b7280" };
+              const label = t.status === "open" ? "Ouvert" : t.status === "drawn" ? "Tiré" : "Clôturé";
+              return (
+                <li key={t.id}>
+                  <Link
+                    href={`/tombolas/${t.slug}`}
+                    className="block bg-white border rounded-xl p-5 hover:border-blue-300 transition-colors"
+                  >
+                    <div className="flex items-center justify-between">
+                      <span className="font-medium text-gray-800">{t.title}</span>
+                      <span
+                        className="text-xs font-medium px-2 py-1 rounded-full"
+                        style={{ backgroundColor: s.bg, color: s.color }}
+                      >
+                        {label}
+                      </span>
+                    </div>
+                    {t.ticket_price > 0 && (
+                      <p className="text-sm text-gray-400 mt-1">{formatPrice(t.ticket_price)} / billet</p>
+                    )}
+                  </Link>
+                </li>
+              );
+            })}
           </ul>
         )}
       </div>
